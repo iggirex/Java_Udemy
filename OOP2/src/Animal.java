@@ -1,5 +1,9 @@
 
-public class Animal {
+public abstract class Animal {
+	
+	// abstract class can have abstract methods
+	// move method will have to be defined by instance
+	// ABSTRACT CLASSES SHOULD BE PARENTS --> no instances
 	
 	String name;
 	int age;
@@ -18,6 +22,8 @@ public class Animal {
 	}
 	
 	public void walk() {
-		System.out.println("Walking...");
+		System.out.println(name + " is walking...");
 	}
+	
+	public abstract void move();
 }
