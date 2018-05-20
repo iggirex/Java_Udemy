@@ -11,8 +11,17 @@ public class Customer {
 		
 	}
 	
-	public void runCreditHistory(Customer cust, double diffVehiclePriceCashOnHand) {
-		
+	public void runCreditHistory(Customer cust, double diffVehiclePriceCashOnHand, Vehicle car) {
+		if(diffVehiclePriceCashOnHand < 10_000) {
+			System.out.println("---------------------------------------");
+			System.out.println("PURCHASE: ");
+			System.out.println("customer: " + cust.getName() + " purchased car: " + car.getMake() + " " + car.getModel());
+			System.out.println("---------------------------------------");
+		} else {
+			System.out.println("");
+			System.out.println("*" + cust.getName() + " needs more money");
+			System.out.println("");
+		}
 	}
 
 

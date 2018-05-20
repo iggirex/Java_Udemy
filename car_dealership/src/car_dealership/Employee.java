@@ -9,11 +9,14 @@ public class Employee {
 	public void handleCustomer(Customer cust, boolean finance, Vehicle vehicle) {
 		
 		if(finance == true) {
-			 cust.runCreditHistory(cust, diffVehiclePriceCashOnHand);   //in Customer
+			diffVehiclePriceCashOnHand = vehicle.getPrice() - cust.getCashOnHand();
+			 cust.runCreditHistory(cust, diffVehiclePriceCashOnHand, vehicle);   //in Customer
 		 } else if(vehicle.getPrice() <= cust.getCashOnHand()) {
 			 processTransaction(cust, vehicle);
 		 } else {
-			 System.out.println("Customer needs more money");
+			 System.out.println("");
+			 System.out.println("*" + cust.getName() + " needs more money");
+			 System.out.println("");
 		 }
 		 
 	}
@@ -26,6 +29,9 @@ public class Employee {
 		
 	}
 	public void processTransaction(Customer cust, Vehicle car) {
-		
+		System.out.println("---------------------------------------");
+		System.out.println("PURCHASE: ");
+		System.out.println("customer: " + cust.getName() + " purchased car: " + car.getMake() + " " + car.getModel());
+		System.out.println("---------------------------------------");
 	}
 }
