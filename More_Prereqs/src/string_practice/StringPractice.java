@@ -25,7 +25,7 @@ public class StringPractice {
 			System.out.println("Printed there");
 		}
 		
-//		System.out.println(a.charAt(33));
+		System.out.println(a.charAt(1));
 		
 		String str2 = "Hello there yogi there";
 		
