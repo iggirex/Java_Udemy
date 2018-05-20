@@ -2,20 +2,30 @@ package car_dealership;
 
 public class Employee {
 	
-	
-	int talent;
 	String name;
-
+	Customer cust;
+	double diffVehiclePriceCashOnHand;
 	
-	/**
-	 * handleCustomer( Customer cust, boolean finance, Vehicle vehicle)
-	 * if(finance == true)
-	 * 		runCreditHistory(Customer cust, double diffVehiclePriceCashOnHand)//in Customer
-	 * else if(vehicle.getPrice() <= cashOnHand);
-	 * 		processTransaction(Customer cust, Vehicle vehicle)
-	 * else
-	 * 		tell cust to bring more money
-	 * 
-	 * could add bonus money from offer
-	 */
+	public void handleCustomer(Customer cust, boolean finance, Vehicle vehicle) {
+		
+		if(finance == true) {
+			 cust.runCreditHistory(cust, diffVehiclePriceCashOnHand);   //in Customer
+		 } else if(vehicle.getPrice() <= cust.getCashOnHand()) {
+			 processTransaction(cust, vehicle);
+		 } else {
+			 System.out.println("Customer needs more money");
+		 }
+		 
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void runCreditHistory() {
+		
+	}
+	public void processTransaction(Customer cust, Vehicle car) {
+		
+	}
 }

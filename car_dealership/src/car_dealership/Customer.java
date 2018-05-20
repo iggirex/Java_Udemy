@@ -10,6 +10,10 @@ public class Customer {
 	public void purchaseCar(Vehicle vehicle, Employee emp, boolean finance) {
 		
 	}
+	
+	public void runCreditHistory(Customer cust, double diffVehiclePriceCashOnHand) {
+		
+	}
 
 
 	public String getName() {
