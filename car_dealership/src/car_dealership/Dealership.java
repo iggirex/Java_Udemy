@@ -6,7 +6,30 @@ import java.util.Random;
 public class Dealership {
 
 	public static void main(String[] args) {
-		generateDailyReport();
+		Customer[] todaysCustomers = generateDaysCustomers();
+		Vehicle[] inventory = generateInventory();
+		Employee[] employees = generateEmployees();
+		
+		System.out.println("AMOUNT OF CUSTOMERS TODAY: " + Integer.toString(todaysCustomers.length));
+		
+		for(int i=0; i < todaysCustomers.length; i++) {
+			int chooseEmployee = rand.nextInt(15);
+			int chooseVehicle = rand.nextInt(numberOfVehicles);
+			int financeChance = rand.nextInt(10) + 1;
+			
+			//System.out.println(Arrays.toString(employees));
+			
+			Employee emp = employees[chooseEmployee];
+			Vehicle vehicle = inventory[chooseVehicle];
+			boolean finance;
+			if(financeChance > 3) {
+				finance = true;
+			} else { 
+				finance = false; 
+			}
+			
+			emp.handleCustomer(todaysCustomers[i], finance, vehicle);
+		}
 	}
 	
 	static Random rand = new Random();
@@ -47,30 +70,7 @@ public class Dealership {
 	
 	private static void generateDailyReport() {
 		
-		Customer[] todaysCustomers = generateDaysCustomers();
-		Vehicle[] inventory = generateInventory();
-		Employee[] employees = generateEmployees();
-		
-		System.out.println("AMOUNT OF CUSTOMERS TODAY: " + Integer.toString(todaysCustomers.length));
-		
-		for(int i=0; i < todaysCustomers.length; i++) {
-			int chooseEmployee = rand.nextInt(15);
-			int chooseVehicle = rand.nextInt(numberOfVehicles);
-			int financeChance = rand.nextInt(10) + 1;
-			
-			//System.out.println(Arrays.toString(employees));
-			
-			Employee emp = employees[chooseEmployee];
-			Vehicle vehicle = inventory[chooseVehicle];
-			boolean finance;
-			if(financeChance > 3) {
-				finance = true;
-			} else { 
-				finance = false; 
-			}
-			
-			emp.handleCustomer(todaysCustomers[i], finance, vehicle);
-		}
+
 	}
 	
 	public static Customer[] generateDaysCustomers() {
