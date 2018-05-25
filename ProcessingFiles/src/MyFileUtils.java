@@ -6,7 +6,7 @@ public class MyFileUtils {
 		if(number < 10) {
 			throw new ExampleException("that shet brokn");
 		}
-		return number - 9;
+		return number - 10;
 	}
 }
 
