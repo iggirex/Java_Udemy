@@ -1,12 +1,15 @@
 package client;
 
+import java.io.IOException;
+
 import aggregators.Aggregator;
 import aggregators.MeanAggregator;
 import aggregators.MinAggregator;
+import fileprocessors.StockFileReader;
 
 public class Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		Aggregator values = new MeanAggregator();
 		values.add(100.93);
@@ -19,8 +22,6 @@ public class Application {
 		Aggregator minValue = new MinAggregator(values.getValues());
 				
 		double result = minValue.calculate();
-		
-		System.out.println(result);
 		
 	}
 

@@ -34,7 +34,7 @@ public class Application {
 		dictionary.put("SuchWow", "showing amazement in an internet kind of way");
 		dictionary.put("Brilliant", "Very intelligent");
 		
-		dictionary.put("Brilliant", "xxxxxxxxx");
+		dictionary.put("Brilliant", "xxxxxxxxx"); // cannot have duplicate KEYS!!
 		
 //		for(String word: dictionary.keySet()) {
 //			System.out.println(word);

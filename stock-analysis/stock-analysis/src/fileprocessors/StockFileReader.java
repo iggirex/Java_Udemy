@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class StockFileReader {
@@ -24,8 +25,7 @@ public class StockFileReader {
 	}
 	
 	static String readFirstLine(String path) throws IOException {
-	    try (BufferedReader br =
-	                   new BufferedReader(new FileReader(path))) {
+	    try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 	        return br.readLine();
 	    }
 	}
@@ -34,9 +34,29 @@ public class StockFileReader {
 	 * @return List
 	 * @throws IOException
 	 */
+	
 	public List<String> readFileData() throws IOException{
-		List<String> lines = new ArrayList<String>();
+		
+		List<String> lines = new LinkedList<String>();
+				
 		// Insert your code here..
+		try (FileReader fileReader = new FileReader(this.filePath);
+				BufferedReader br = new BufferedReader(new FileReader(this.filePath))) {
+			
+			String line = br.readLine();
+			
+			while(line != null) {
+				line = br.readLine();
+				lines.add(line);
+			}
+			
+		}
+		
+		catch (IOException e) {
+			System.out.println("StockReader having trouble reading the csv file");
+			throw(e);
+		}
+
 	    return lines;
 	}
 	
