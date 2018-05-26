@@ -34,6 +34,8 @@ public class Application {
 		dictionary.put("SuchWow", "showing amazement in an internet kind of way");
 		dictionary.put("Brilliant", "Very intelligent");
 		
+		dictionary.put("Brilliant", "xxxxxxxxx");
+		
 //		for(String word: dictionary.keySet()) {
 //			System.out.println(word);
 //		}
