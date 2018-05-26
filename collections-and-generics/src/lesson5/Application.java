@@ -20,19 +20,31 @@ public class Application {
 //		hashSet.add(10);
 //		hashSet.add(10);
 //		hashSet.add(10);
+	
 		
-		HashSet<String> hashSet = new HashSet<String>();
 		
-		hashSet.add("hey");
-		hashSet.add("tjere");
-		hashSet.add("neighborino");
-		hashSet.add("hows");
-		hashSet.add("summer");
-		hashSet.add("going?");
+//		HashSet<String> hashSet = new HashSet<String>();
+//		
+//		hashSet.add("hey");
+//		hashSet.add("tjere");
+//		hashSet.add("neighborino");
+//		hashSet.add("hows");
+//		hashSet.add("summer");
+//		hashSet.add("going?");
 		
-		ArrayList<String> myList = new ArrayList<String>(hashSet); // makes a copy of hashSet into a List
 		
-		//Collections.sort(myList); // .sort only accepts List
+		HashSet<Employee> hashSet = new HashSet<Employee>();
+		
+		hashSet.add(new Employee("Mike", 10000, "Accounting"));
+		hashSet.add(new Employee("Bob", 3500, "Software"));
+		hashSet.add(new Employee("Tina", 6500, "IT"));
+		hashSet.add(new Employee("Trina", 100500, "CEO"));
+
+
+		
+		ArrayList<Employee> myList = new ArrayList<Employee>(hashSet); // makes a copy of hashSet into a List
+		
+		Collections.sort(myList); // .sort only accepts List
 		
 		System.out.println(myList);
 
