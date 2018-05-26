@@ -40,10 +40,10 @@ public class StockFileReader {
 		List<String> lines = new LinkedList<String>();
 				
 		// Insert your code here..
-		try (FileReader fileReader = new FileReader(this.filePath);
-				BufferedReader br = new BufferedReader(new FileReader(this.filePath))) {
+		try (// FileReader fileReader = new FileReader(this.filePath); -- not necessary 
+				BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 			
-			String line = br.readLine();
+			String line = br.readLine(); // skip the first line
 			
 			while(line != null) {
 				line = br.readLine();

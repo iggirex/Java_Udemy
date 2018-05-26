@@ -35,10 +35,12 @@ public class StockFileApplication {
 			if(line != null) {
 				
 				HashMap<String, Double> thisDay = new HashMap<String, Double>();
-				List<String> values = (List<String>) Arrays.asList(line.split(","));
+				
+//				List<String> values = (List<String>) Arrays.asList(line.split(","));
+				String [] values = line.split(",");
 				
 				for(int i = 0; i < headers.size(); i++) {
-					double doubleValue = Double.parseDouble(values.get(i));
+					double doubleValue = Double.parseDouble(values[i]);
 					thisDay.put(headers.get(i), doubleValue);
 				}
 				dataResult.add(thisDay);
