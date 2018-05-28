@@ -1,5 +1,6 @@
 package moreCollectionsPractice;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -31,6 +32,12 @@ public class ArrayPracticeApplication {
 		
 		System.out.println(myHashSet);
 		
+		
+		ArrayList<Integer> myNumberArrayList = ArrayListUtil.makeNumberArrayList(3, 3, 44, 4);
+		System.out.println("number array list: " +  myNumberArrayList);
+		
+		
+				
 	}
 
 }
