@@ -37,7 +37,11 @@ public class ArrayPracticeApplication {
 		System.out.println("number array list: " +  myNumberArrayList);
 		
 		
-				
+		ArrayList<String> myGenericArrayList = ArrayListUtil.makeGenericArrayList("3", "3", "true");
+		System.out.println("generic array list: " +  myGenericArrayList);
+		
+		
+		
 	}
 
 }
