@@ -40,6 +40,14 @@ public class ArrayPracticeApplication {
 		ArrayList<String> myGenericArrayList = ArrayListUtil.makeGenericArrayList("3", "3", "true");
 		System.out.println("generic array list: " +  myGenericArrayList);
 		
+		ArrayList<Integer> myGenericIntArray = ArrayListUtil.makeGenericArrayList(33, 44, 432897);
+		System.out.println("generic array list of ints: " + myGenericIntArray);
+		
+//		int myNewNum = myGenericIntArray[2] + 2;
+		int myNewNum = myGenericIntArray.get(2) + 2;
+
+		System.out.println(myNewNum);
+		
 		
 		
 	}
