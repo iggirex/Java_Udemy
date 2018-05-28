@@ -1,6 +1,7 @@
 package moreCollectionsPractice;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 public class ArrayPracticeApplication {
@@ -17,8 +18,18 @@ public class ArrayPracticeApplication {
 		String[] madeFromObj = myObj.makeStringArray("dis", "array", "from obj");
 		System.out.println(Arrays.toString(madeFromObj));
 		
-		LinkedList myNewLL = LinkedListUtil.makeLinkedList("hey", true, 5);
+		LinkedList myNewLL = LinkedListUtil.makeLLFromScratch(5);  // Will return all objects instead of actual data types BAD
 		System.out.println(myNewLL);
+		
+		
+		LinkedList<String> myGoodLL = LinkedListUtil.makeGoodLL("yo", "this is ll", "in the house");
+		System.out.println(myGoodLL);
+		
+//		LinkedList<e1, e2> myGoodGenericLL = LinkedListUtil.makeGoodGenericLL("hey", 3);   ---Why does this not work ??
+		
+		HashSet<Integer> myHashSet = HashSetUtil.makeHashSet(49);
+		
+		System.out.println(myHashSet);
 		
 	}
 
