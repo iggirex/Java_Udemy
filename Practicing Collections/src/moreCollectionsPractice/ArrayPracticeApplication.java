@@ -8,10 +8,6 @@ public class ArrayPracticeApplication {
 		// TODO Auto-generated method stub
 		
 		
-		
-//		String[] myNewArr = PureArray.makeStringArray("hey", "may", "array");
-//		System.out.println(myNewArr);
-		
 		String[] myNewArr = ArrayUtil.makeStringArray("hey", "may", "array");
 		
 		System.out.println(Arrays.toString(myNewArr));
