@@ -27,7 +27,7 @@ public class Application {
 		
 		Set resultSet = union(mySet1, mySet2);
 		
-		Iterator itr = resultSet.iterator();
+		Iterator<String> itr = resultSet.iterator();
 		
 		while(itr.hasNext()) {
 			System.out.println(itr.next());

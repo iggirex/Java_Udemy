@@ -26,6 +26,8 @@ public class LearningArrays {
 		System.out.println(words[9]);
 		
 		System.out.println(values[55]);
+		
+		
 
 	}
 
