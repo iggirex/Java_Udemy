@@ -1,6 +1,7 @@
 package moreCollectionsPractice;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class ArrayPracticeApplication {
 
@@ -13,12 +14,12 @@ public class ArrayPracticeApplication {
 		
 		
 		PureArrayFromObj myObj = new PureArrayFromObj();
-		
 		String[] madeFromObj = myObj.makeStringArray("dis", "array", "from obj");
-		
 		System.out.println(Arrays.toString(madeFromObj));
 		
-
+		LinkedList myNewLL = LinkedListUtil.makeLinkedList("hey", true, 5);
+		System.out.println(myNewLL);
+		
 	}
 
 }
