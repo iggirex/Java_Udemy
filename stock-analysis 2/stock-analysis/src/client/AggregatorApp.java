@@ -9,9 +9,8 @@ public class AggregatorApp {
 
 	public static void main(String[] args) throws IOException {
 		
-		AggregatorProcessor something = new AggregatorProcessor();
-		
-		something.readFile();
+//		AggregatorProcessor something = new AggregatorProcessor();
+//		something.readFile();
 		
 		/**
 			You'll need to uncomment the below code. You'll notice it does not compile!
@@ -24,10 +23,10 @@ public class AggregatorApp {
 			-->> YOUR WORK SHOULD BE DONE IN THE AggregatorProcessor CLASS. 
 		**/
 
-//		MinAggregator agg = new MinAggregator();
-//		AggregatorProcessor<MinAggregator> aggsProcessor = new AggregatorProcessor<MinAggregator>(agg, "table.csv");
-//		double value = aggsProcessor.runAggregator(1);
-//		System.out.println(value);
+		MinAggregator agg = new MinAggregator();
+		AggregatorProcessor<MinAggregator> aggsProcessor = new AggregatorProcessor<MinAggregator>(agg, "table.csv");
+		double value = aggsProcessor.runAggregator(1);
+		System.out.println(value);
 	
 
 	}
