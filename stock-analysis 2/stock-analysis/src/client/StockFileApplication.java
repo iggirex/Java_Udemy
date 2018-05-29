@@ -13,8 +13,6 @@ public class StockFileApplication {
 	public static void main(String args[]) throws IOException{
 		StockFileReader fr = new StockFileReader("stock-analysis/table.csv");
 		
-		System.out.println(">>>>>>>>>" + fr);
-				
 		List<HashMap<String, Double>> dataResult = populateStockFileData(fr.getHeaders(), fr.readFileData());
 		StockFileData fileData = new StockFileData();
 		fileData.addData(dataResult);
@@ -28,7 +26,7 @@ public class StockFileApplication {
 	 * @param lines
 	 * @return List
 	 */
-	public static List<HashMap<String, Double>> populateStockFileData(List<String> headers, List<String> lines){
+public static List<HashMap<String, Double>> populateStockFileData(List<String> headers, List<String> lines){
 		
 		List<HashMap<String, Double>> dataResult = new ArrayList<>();
 
@@ -36,8 +34,6 @@ public class StockFileApplication {
 			if(line != null) {
 				
 				HashMap<String, Double> thisDay = new HashMap<String, Double>();
-				
-//				List<String> values = (List<String>) Arrays.asList(line.split(","));
 				String [] values = line.split(",");
 				
 				for(int i = 0; i < headers.size(); i++) {

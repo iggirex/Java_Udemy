@@ -11,10 +11,8 @@ import fileprocessors.StockFileReader;
 public class StockFileApplication {
 	
 	public static void main(String args[]) throws IOException{
-		StockFileReader fr = new StockFileReader("stock-analysis/table.csv");
+		StockFileReader fr = new StockFileReader("table.csv");
 		
-		System.out.println(">>>>>>>>>" + fr);
-				
 		List<HashMap<String, Double>> dataResult = populateStockFileData(fr.getHeaders(), fr.readFileData());
 		StockFileData fileData = new StockFileData();
 		fileData.addData(dataResult);
@@ -29,24 +27,8 @@ public class StockFileApplication {
 	 * @return List
 	 */
 	public static List<HashMap<String, Double>> populateStockFileData(List<String> headers, List<String> lines){
-		
 		List<HashMap<String, Double>> dataResult = new ArrayList<>();
-
-		for(String line :  lines) {
-			if(line != null) {
-				
-				HashMap<String, Double> thisDay = new HashMap<String, Double>();
-				
-//				List<String> values = (List<String>) Arrays.asList(line.split(","));
-				String [] values = line.split(",");
-				
-				for(int i = 0; i < headers.size(); i++) {
-					double doubleValue = Double.parseDouble(values[i]);
-					thisDay.put(headers.get(i), doubleValue);
-				}
-				dataResult.add(thisDay);
-			}
-		}
+		// Insert your code here..
 		return dataResult;
 	}
 	

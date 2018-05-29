@@ -49,6 +49,11 @@ public class ArrayPracticeApplication {
 		System.out.println(myNewNum);
 		
 		
+//		HashMap<String, Integer, boolean> myGenericHashMap = HashMapUtil.makeHashMap("hello", true, "there", false)HashMap<String, int, boolean>();   -- can't do this ??
+		
+		
+		
+		
 		
 	}
 
