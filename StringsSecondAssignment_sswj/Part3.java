@@ -33,6 +33,25 @@ public class Part3 {
         return dna.substring(startIndex, closestStopCodonIndex + 3);
     }
     
+    public int countGenes(String dna){
+        
+        int numberOfGenes = 0;
+        int startIndex = dna.indexOf("ATG");
+        if (startIndex == -1){
+            return 0;
+        }
+        
+        int closestStopCodonIndex = Math.min(findStopCodon(dna, startIndex, "TAA"),findStopCodon(dna, startIndex, "TAG"));
+        closestStopCodonIndex = Math.min(closestStopCodonIndex, findStopCodon(dna, startIndex, "TGA"));
+        
+        if(closestStopCodonIndex == dna.length()){
+            return 0;
+        }
+        
+        return numberOfGenes;
+        
+    }
+    
     public void testFindCodon(){
         
         String dna1 = "AGCGTGCACAGCAATGGACCAGTGGTAAAGCTCGC"; // 1 gene

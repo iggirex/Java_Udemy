@@ -34,6 +34,25 @@ public class Part1 {
         return dna.substring(startIndex, closestStopCodonIndex + 3);
     }
     
+    public void printAllGenes(String dna){
+        
+        while(true){
+         
+            String geneFound = findGene(dna);
+            
+            if( !geneFound.isEmpty()){
+                System.out.println("found this gene: " + geneFound);
+                int startIndex = dna.indexOf(geneFound);
+                int endOfGeneIndex = startIndex + geneFound.length();
+                dna = dna.substring( endOfGeneIndex, dna.length());
+            } else {  
+            break;
+            }
+            
+        }
+        
+    }
+    
     public void testFindCodon(){
         
         String dna1 = "AGCGTGCACAGCAATGGACCAGTGGTAAAGCTCGC"; // 1 gene
@@ -59,6 +78,21 @@ public class Part1 {
         System.out.println("result for dna3 test: " + findGene(dna3));
         System.out.println("result for dna4 test: " + findGene(dna4));
         System.out.println("result for dna5 test: " + findGene(dna5));
+    }
+    
+        public void testPrintAllGenes(){
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>");
+        String dna1 = "AGCGTGCACAGCAATGGACCAGTGGTAAAGCTCGC"; // 1 gene => ATGGACCAGTGGTAA
+        String dna2 = "";
+        String dna3 = "ATTTAGATGGCCTAAATGGTGAGACAGTAAGGGCCCATGGTGTCTCCTTAGGCGTGT"; // 3 genes => ATGGCCTAA, 
+        String dna4 = "TAGGAGCAAGATGGCGCCTCGTAGTAAATGCGCTAG"; // 0 gene, 1 almost-gene not mult of 3
+        String dna5 = "GATTAGATGGTGCGCTTAGATGGTAATAGATTGTAA"; // 0 genes, 2 almost-genes not mult of 3
+
+        printAllGenes(dna1);
+        printAllGenes(dna2);
+        printAllGenes(dna3);
+        printAllGenes(dna4);
+        printAllGenes(dna5);
     }
   
     
