@@ -33,19 +33,41 @@ public class Part3 {
         return dna.substring(startIndex, closestStopCodonIndex + 3);
     }
     
+    public void printAllGenes(String dna){
+        
+        while(true){
+         
+            String geneFound = findGene(dna);
+            
+            if( !geneFound.isEmpty()){
+                System.out.println("found this gene: " + geneFound);
+                int startIndex = dna.indexOf(geneFound);
+                int endOfGeneIndex = startIndex + geneFound.length();
+                dna = dna.substring( endOfGeneIndex, dna.length());
+            } else {  
+            break;
+            }
+            
+        }
+        
+    }
+    
     public int countGenes(String dna){
         
         int numberOfGenes = 0;
-        int startIndex = dna.indexOf("ATG");
-        if (startIndex == -1){
-            return 0;
-        }
-        
-        int closestStopCodonIndex = Math.min(findStopCodon(dna, startIndex, "TAA"),findStopCodon(dna, startIndex, "TAG"));
-        closestStopCodonIndex = Math.min(closestStopCodonIndex, findStopCodon(dna, startIndex, "TGA"));
-        
-        if(closestStopCodonIndex == dna.length()){
-            return 0;
+        while(true){
+         
+            String geneFound = findGene(dna);
+            
+            if( !geneFound.isEmpty()){
+                numberOfGenes++;
+                int startIndex = dna.indexOf(geneFound);
+                int endOfGeneIndex = startIndex + geneFound.length();
+                dna = dna.substring( endOfGeneIndex, dna.length());
+            } else {  
+            break;
+            }
+            
         }
         
         return numberOfGenes;
@@ -77,5 +99,20 @@ public class Part3 {
         System.out.println("result for dna3 test: " + findGene(dna3));
         System.out.println("result for dna4 test: " + findGene(dna4));
         System.out.println("result for dna5 test: " + findGene(dna5));
+    }
+    
+        public void testCountGenes(){
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>");
+        String dna1 = "AGCGTGCACAGCAATGGACCAGTGGTAAAGCTCGC"; // 1 gene => ATGGACCAGTGGTAA
+        String dna2 = "";
+        String dna3 = "ATTTAGATGGCCTAAATGGTGAGACAGTAAGGGCCCATGGTGTCTCCTTAGGCGTGT"; // 3 genes => ATGGCCTAA, 
+        String dna4 = "TAGGAGCAAGATGGCGCCTCGTAGTAAATGCGCTAG"; // 0 gene, 1 almost-gene not mult of 3
+        String dna5 = "GATTAGATGGTGCGCTTAGATGGTAATAGATTGTAA"; // 0 genes, 2 almost-genes not mult of 3
+
+        System.out.println("count for dna1 test: " + countGenes(dna1));
+        System.out.println("count for dna2 test: " + countGenes(dna2));
+        System.out.println("count for dna3 test: " + countGenes(dna3));
+        System.out.println("count for dna4 test: " + countGenes(dna4));
+        System.out.println("count for dna5 test: " + countGenes(dna5));
     }
 }
