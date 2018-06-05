@@ -71,6 +71,28 @@ public class Part1 {
         return store;
     }
     
+    public double cgRatio(String dna){
+        double count = 0.00;
+        
+        for(int i = 0; i < dna.length(); i++){
+            
+            if (dna.charAt(i) == 'G' || dna.charAt(i) == 'C'){
+                count++;
+            }
+            
+            
+        }
+        return count/dna.length();
+    }
+    
+    public void testCgRatio(){
+        
+        String dna =  "ATGCCATAG";
+        
+        System.out.println(cgRatio(dna));
+        
+    }
+    
     public void testGetAllGenes(){
         
         String dna = "ATTTAGATGGCCTAAATGGTGAGACAGTAAGGGCCCATGGTGTCTCCTTAGGCGTGTAGCGTGCACAGCAATGGACCAGTGGTAAAGCTCGC";
