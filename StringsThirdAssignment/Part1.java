@@ -71,6 +71,57 @@ public class Part1 {
         return store;
     }
     
+    public void processGenes(StorageResource sr){
+        int greaterThan9Char = 0;
+        int cgRatioGreaterThan9 = 0;
+        int longestGeneLength = 0;
+        for(String s : sr.data()){
+            
+            if(s.length() > longestGeneLength){
+                longestGeneLength = s.length();
+            }
+            if(s.length() > 9){
+                greaterThan9Char++;
+                System.out.print(s + " / / ");
+            }
+            if(cgRatio(s) > 0.35){
+                cgRatioGreaterThan9++;
+                System.out.print("this dna has C-G ratio > 0.35: " + s + " / / ");
+            }
+            
+        }
+        System.out.print("Number of strings that are longer than 9 char: " + greaterThan9Char + " / / ");
+        System.out.print("CG Ratio > 9 count: " + cgRatioGreaterThan9 + " / / ");
+        System.out.println("Longest Gene length: " + longestGeneLength + " / / ");
+        
+    }
+    
+    public void testProcessGenes(){
+        
+        StorageResource dnaSR = new StorageResource();
+        
+        String dna1 = "AGCGTGCACAGCAATGGACCAGTGGTAAAGCTCGCATGTGTCGCGTGCGTGCGTCAAACCCTCTCCACTAA"; // 2 gene
+        String dna2 = "";
+        String dna3 = "ATTTAGATGGCCTAAATGGTGAGACAGTAAGGGCCCATGGTGTCTCCTTAGGCGTGT"; // 3 genes
+        String dna4 = "TAGGAGCAAGATGGCGCCTCGTAGTAAATGCGCTAG"; // 1 gene, 1 almost-gene not mult of 3
+        String dna5 = "GATTAGATGGTGCGCTTAGATGGTAATAGATTGTAA"; // 0 genes, 2 almost-genes not mult of 3
+        
+        dnaSR.add(dna1);
+        dnaSR.add(dna2);
+        dnaSR.add(dna3);
+        dnaSR.add(dna4);
+        dnaSR.add(dna5);
+        
+        processGenes(dnaSR);
+        
+        
+        //FileResource fr = new FileResource("brca1line.fa");
+        //String dna = fr.asString();
+        
+        //System.out.println(processGenes(dna3));
+        
+    }
+    
     public double cgRatio(String dna){
         double count = 0.00;
         
