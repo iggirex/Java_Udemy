@@ -106,19 +106,17 @@ public class Part1 {
         String dna4 = "TAGGAGCAAGATGGCGCCTCGTAGTAAATGCGCTAG"; // 1 gene, 1 almost-gene not mult of 3
         String dna5 = "GATTAGATGGTGCGCTTAGATGGTAATAGATTGTAA"; // 0 genes, 2 almost-genes not mult of 3
         
+        FileResource fr = new FileResource("brca1line.fa");
+        String dna6 = fr.asString();
+        
         dnaSR.add(dna1);
         dnaSR.add(dna2);
         dnaSR.add(dna3);
         dnaSR.add(dna4);
         dnaSR.add(dna5);
+        dnaSR.add(dna6);
         
         processGenes(dnaSR);
-        
-        
-        //FileResource fr = new FileResource("brca1line.fa");
-        //String dna = fr.asString();
-        
-        //System.out.println(processGenes(dna3));
         
     }
     
