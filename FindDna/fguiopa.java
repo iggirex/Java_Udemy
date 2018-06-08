@@ -1,16 +1,15 @@
 
 /**
- * Write a description of FindDna here.
+ * Write a description of fguiopa here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 
-//import edu.duke.StorageResource;
 import edu.duke.*;
 import java.lang.Math;
 
-public class FindDna {
+public class fguiopa {
     
     public int findStartCodon(String dna, int index){
         int startIndex = dna.indexOf("ATG", index);
@@ -173,54 +172,143 @@ public class FindDna {
         return count;
     }
     
-    public double cgRatio(StorageResource geneCollection){
+    public int cgRatio(StorageResource geneCollection){
         
-        double count = 0;
+        int larger = 0;
         
-        System.out.println("This is geneCollection size: " + geneCollection.size());
+        //System.out.println("This is geneCollection size: " + geneCollection.size());
         
         for(String gene : geneCollection.data()){
             int pos = 0;
+            double count = 0;
             
-            System.out.println(">>>>>>>>>>> Inside loop of collection <<<<<<<<<<< ");
-            System.out.println("this is pos: " + pos + " // this is gene: " + gene + " // this is gene.indexOf(pos) " + gene.indexOf(pos));
+            //System.out.println(">>>>>>>>>>> Inside loop of collection <<<<<<<<<<< ");
+            //System.out.println("this is pos: " + pos + " // this is gene: " + gene + " // this is gene.indexOf(pos) " + gene.indexOf(pos));
             
             while (gene.indexOf(pos) != gene.length()){
                 
                 String currentLetter = gene.substring(pos, pos + 1);
                 
-                System.out.println("this current letter: " + currentLetter + " and its index is: " + gene.indexOf(currentLetter) + " and gene.length() is: " + gene.length());
-                System.out.println("And this is position: " + pos);
+                //System.out.println("this current letter: " + currentLetter + " and its index is: " + gene.indexOf(currentLetter) + " and gene.length() is: " + gene.length());
+                //System.out.println("And this is position: " + pos + " and this is count: " + count);
+
+                
+                if (gene.substring(pos, pos + 1).equals("C") || gene.substring(pos, pos + 1).equals("G")){
+                    count++;
+                    //System.out.println(">>>>>>>>>> NOW this is count: " + count);
+                }
+                
+                
                 if(pos == gene.length() - 1){
                     break;
                 }
                 
-                if (gene.substring(pos, pos + 1) == "C" || gene.substring(pos, pos + 1) == "G"){
-                    count++;
-                }
                 pos++;
             }
-            System.out.println("for gene: " + gene + " the CG Ratio is: " + count / gene.length());
+            
+            if (count / gene.length() > 0.35){
+                
+                larger++;   
+            }
+            //System.out.println("$$$$$$ this is count: " + count + " and this is gene.length() : " + gene.length());
+            //System.out.println("for gene: " + gene + " the CG Ratio is: " + count / gene.length());
         }
         
-        System.out.println("this is count: " + count);
+        //System.out.println("this is count: " + count);
         
-        double geneCollSize = geneCollection.size();
+        return larger;
+        
+        //double geneCollSize = geneCollection.size();
         
         //return count / geneCollSize;
     }
+    
     
     public void testCgRatio(){
         
         StorageResource genes = new StorageResource();
         
+        genes.add("TAGCTAATATTGCG"); // ratio = 5/14 => 0.3571
         genes.add("TAATATATATATATATATA"); // ratio = 0
         genes.add("GCCCGGGGCCCCGGGCCCGGGCC"); // ratio = 1
         genes.add("TGTCTGTCAGACAGAC"); // ratio = 0.5
         genes.add("TAGCTA"); // ratio = 2/6 => 0.33333
         genes.add("TAGCTAATATTGCG"); // ratio = 5/14 => 0.3571
+        genes.add("GCCCGGGGCCCCGGGCCCGGGCC"); // ratio = 1
+        genes.add("GCCCGGGGCCCCGGGCCCGGGCC"); // ratio = 1
+        genes.add("TAATATATATATATATATA"); // ratio = 0
+        genes.add("TAATATATATATATATATA"); // ratio = 0
+
         
-        System.out.println("CG Ratio is: " + cgRatio(genes));
+        System.out.println("CG Ratios larger than 0.35 = " + cgRatio(genes));
+        
+    }
+    
+    public int howManyCTG(String dna){
+        int startIndex = 0;
+        int count = 0;
+        
+        while (true){
+         
+            startIndex = dna.indexOf("CTG", startIndex);
+            
+            if (startIndex == -1){
+                return count;
+            }
+            
+            count++;
+            
+            startIndex = startIndex + 3;
+            
+        }
+        
+    }
+    
+    public void testHowManyCTG(){
+        
+     String dna1 = "ACTGACTACTGTTCCACTCTGCTGCT"; // 4
+     String dna2 = "TTCCCTGCTGCTGAGTACAGACGTACACTGCTGAGATCTGAGTCTG:"; // 7
+     
+     System.out.println("Should be 4: " + howManyCTG(dna1));
+     System.out.println("Should be 7: " + howManyCTG(dna2));
+
+    }
+    
+    public int findLongestGeneLength(StorageResource geneCollection){
+        int longestLength = 0;
+        
+        for(String gene : geneCollection.data()){
+            
+            if (gene.length() > longestLength) {
+                
+                longestLength = gene.length();
+                
+            }
+            
+        }
+        
+        return longestLength;
+    }
+    
+    public void testFindLongestGeneLength(){
+        
+        StorageResource genes = new StorageResource();
+        
+        genes.add("TAGCTAATATTGCG"); // 14
+        genes.add("TAATATATATATATATATA"); // ratio = 0
+        genes.add("GCCCGGGGCCCCGGGCCCGGGCCCGTGCA"); // 29
+        genes.add("TGTCTGTCAGACAGAC"); // ratio = 0.5
+        genes.add("TAGCTA"); // ratio = 2/6 => 0.33333
+        genes.add("TAGCTAATATTGCG"); // ratio = 5/14 => 0.3571
+        genes.add("GCCCGGGGCCCCGGGCCCGGGCC"); // ratio = 1
+        genes.add("GCCCGGGGCCCCGGGCCCGGGCC"); // ratio = 1
+        genes.add("TAATATATATATATATATA"); // ratio = 0
+        genes.add("TAATATATATATATATATA"); // ratio = 0
+
+        
+        System.out.println("Longest gene length = " + findLongestGeneLength(genes));
+        
+        
         
     }
     
@@ -275,6 +363,11 @@ public class FindDna {
         System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
         System.out.println("Number of genes longer than 60: " + longerThan60(geneResults));
         System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+        System.out.println("Number of genes with CG ratio > 0.35: " + cgRatio(geneResults));
+        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+        System.out.println("How many times CTG codons appear in dna: " + howManyCTG(dnaTest));
+        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+        System.out.println("This is the longest gene length: " + findLongestGeneLength(geneResults));
         
         // 3 genes - ATG-CCC-TGG-GTG-TCT-CCC-CTC-ATG-AGA-TAG, ATG-AGA-TAG-CCC-CCC-TAA-ATG-GGT-TGA-AGA-GGG-TCC-TAG
         // ATG-TAG-TAA-ATG-CCC-CCC-TAA
@@ -297,3 +390,6 @@ public class FindDna {
     }
 
 }
+
+
+
