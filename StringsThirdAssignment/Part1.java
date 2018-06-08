@@ -9,6 +9,9 @@ public class Part1 {
         if(stopCodonCandidate != -1 && dna.substring(startIndex, stopCodonCandidate).length() % 3 == 0){
             return stopCodonCandidate;
         }
+        else {
+            findStopCodon(dna, stopCodonCandidate + 1, stopCodon);
+        }
         
       return dna.length();
     }
@@ -20,14 +23,20 @@ public class Part1 {
             return "";
         }
         
+        
+        
         int closestStopCodonIndex = Math.min(findStopCodon(dna, startIndex, "TAA"),findStopCodon(dna, startIndex, "TAG"));
         closestStopCodonIndex = Math.min(closestStopCodonIndex, findStopCodon(dna, startIndex, "TGA"));
+        
+        //System.out.println("At start Index: " + startIndex + " And stop codon index: " + closestStopCodonIndex + " and dna: " + dna.substring(startIndex, closestStopCodonIndex + 2));
         
         if(closestStopCodonIndex == dna.length()){
             return "";
         }
         
-        return dna.substring(startIndex, closestStopCodonIndex + 3);
+        
+        
+        return dna.substring(startIndex, closestStopCodonIndex + 2);
     }
     
     public void printAllGenes(String dna){
@@ -75,24 +84,59 @@ public class Part1 {
         int greaterThan9Char = 0;
         int cgRatioGreaterThan9 = 0;
         int longestGeneLength = 0;
+        
         for(String s : sr.data()){
             
+            StorageResource allGenes = getAllGenes(s);
+            
+            String geneFound = findGene(s);
+            
+            System.out.println("This is dna string: " + s);
+            System.out.println("This dna has " + allGenes.size() + " number of genes");
+            System.out.println("This is geneFound: " + geneFound);
+            
             if(s.length() > longestGeneLength){
-                longestGeneLength = s.length();
+                //longestGeneLength = s.length();
             }
             if(s.length() > 9){
                 greaterThan9Char++;
-                System.out.print(s + " / / ");
+                //System.out.print(s + " / / ");
             }
             if(cgRatio(s) > 0.35){
                 cgRatioGreaterThan9++;
-                System.out.print("this dna has C-G ratio > 0.35: " + s + " / / ");
+                System.out.print(" ####### this dna has C-G ratio > 0.35: " + s + " / / ");
             }
             
         }
-        System.out.print("Number of strings that are longer than 9 char: " + greaterThan9Char + " / / ");
-        System.out.print("CG Ratio > 9 count: " + cgRatioGreaterThan9 + " / / ");
-        System.out.println("Longest Gene length: " + longestGeneLength + " / / ");
+        //System.out.print("Number of strings that are longer than 9 char: " + greaterThan9Char + " / / ");
+        //System.out.print("CG Ratio > 9 count: " + cgRatioGreaterThan9 + " / / ");
+        //System.out.println("Longest Gene length: " + longestGeneLength + " / / ");
+        
+        
+        
+        
+    }
+    
+    public void testFileGenes(){
+     
+        FileResource fr = new FileResource("GRch38dnapart.fa");
+        String dna = fr.asString();
+        
+        //System.out.println(dna6);
+        
+        dna = dna.toUpperCase();
+        
+        //System.out.println(dna);
+        
+        System.out.println(">>>>>>>>>>>");
+        printAllGenes(dna);
+        
+        StorageResource allGenes = getAllGenes(dna);
+        
+        processGenes(allGenes);
+        //printAllGenes("ATTTAGATGGCCTAAATGGTGAGACAGTAAGGGCCCATGGTGTCTCCTTAGGCGTGT");
+        
+        
         
     }
     
@@ -108,6 +152,7 @@ public class Part1 {
         
         FileResource fr = new FileResource("brca1line.fa");
         String dna6 = fr.asString();
+        dna6 = dna6.toUpperCase();
         
         dnaSR.add(dna1);
         dnaSR.add(dna2);
@@ -117,6 +162,12 @@ public class Part1 {
         dnaSR.add(dna6);
         
         processGenes(dnaSR);
+        
+        //StorageResource allGenes = getAllGenes(dna6);
+        
+        //System.out.println("Number of genes in this string: " + allGenes.size());
+        
+        //printAllGenes(dna6.toUpperCase());
         
     }
     
