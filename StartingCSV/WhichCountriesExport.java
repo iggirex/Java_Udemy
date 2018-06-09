@@ -88,13 +88,13 @@ public class WhichCountriesExport {
         CSVParser parser = fr.getCSVParser();
         
         //System.out.println(countryInfo(parser, "Germany"));
-        //System.out.println(countryInfo(parser, "Bubucaca"));
+        //System.out.println(countryInfo(parser, "Nauru"));
         
         //listExportersTwoProducts(parser, "gold", "diamonds");
         
-        //System.out.println(numberOfExporters(parser, "gold") + " countries export gold");
+        //System.out.println(numberOfExporters(parser, "sugar") + " countries export sugar");
         
-        bigExporters(parser, "$999,999,999");
+        bigExporters(parser, "$999,999,999,999");
     }
     
         public void whoExportsCoffee(){
