@@ -79,5 +79,32 @@ public class BabyBirths {
         //System.out.println(getRank(2012, "Mason", "F"));
     }
     
+    public String getName(int year, int rank, String gender){
     
+        FileResource fr = new FileResource("./us_babynames/us_babynames_by_year/yob" + year + ".csv");
+        CSVParser parser = fr.getCSVParser(false);
+        int recordsRankGirls = 0;
+        int recordsRankBoys = 0;
+        for(CSVRecord rec : parser){
+            if(rec.get(1).equals("F")){
+                recordsRankGirls++;
+                if(recordsRankGirls == rank && rec.get(1).equals(gender)){
+                    return rec.get(0);
+                }
+            } else if(rec.get(1).equals("B")){
+                recordsRankBoys++;
+                
+                if(recordsRankBoys == rank && rec.get(1).equals(gender)){
+                    return rec.get(0);
+                } 
+            }
+        }
+        return "NO NAME";
+    }
+    
+    public void testGetName(){
+        
+        System.out.println("In 2012 the 5th ranked F name was: " + getName(2012, 5, "F"));
+        
+    }
 }
