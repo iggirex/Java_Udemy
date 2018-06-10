@@ -67,7 +67,7 @@ public class CSVMax {
         CSVParser parser = fr.getCSVParser();
         
         CSVRecord lowest = coldestHourInFile(parser);
-        System.out.println("coldest temperature was " + lowest.get("TemperatureF") + " at " + lowest.get("TemperatureF"));
+        System.out.println("coldest temperature was " + lowest.get("TemperatureF") + " at " + lowest.get("DateUTC"));
     }
    
     public CSVRecord hottestInManyDays() {
@@ -97,11 +97,12 @@ public class CSVMax {
         DirectoryResource dr = new DirectoryResource();
         
         for (File f : dr.selectedFiles()){
-            //String fileName = f.getName();
 
             FileResource fr = new FileResource(f);
             CSVParser parser = fr.getCSVParser();
             CSVRecord coldestHourInThisFile = coldestHourInFile(parser);
+            
+            System.out.println("We're inside file : " + f.getName());
             
             if(coldestFile == null){
                 coldestFile = f;
@@ -119,11 +120,12 @@ public class CSVMax {
         String coldestFileName = fileWithColdestTemperature();
         System.out.println("File with the coldest temperature is: " + coldestFileName);
         
-        FileResource coldestFile = new FileResource("./nc_weather/2015/" + coldestFileName);
+        FileResource coldestFile = new FileResource("./nc_weather/2014/" + coldestFileName);
         CSVParser parser = coldestFile.getCSVParser();
         
         System.out.println("This was the coldest hour on that day: " + coldestHourInFile(parser).get("TemperatureF"));
         
+        //FileResource coldestFile2 = new FileResource("./nc_weather/2015/" + coldestFileName);
         CSVParser parser2 = coldestFile.getCSVParser();
         for (CSVRecord record : parser2){
                 System.out.println(record.get("DateUTC") + " " + record.get("TemperatureF"));  
@@ -132,17 +134,21 @@ public class CSVMax {
     }
     
     public CSVRecord getSmallestOfTwo(CSVRecord currentRow, CSVRecord smallestSoFar){
-        if(currentRow.get("Humidity") != "N/A"){
+        
+        String currentHumidityString = currentRow.get("Humidity");
+
+        if(!currentHumidityString.equals("N/A")){
             if(smallestSoFar == null){
                 smallestSoFar = currentRow;
             } else {
+
                 double currentHumidity = Double.parseDouble(currentRow.get("Humidity"));
                 double smallestHumidity = Double.parseDouble(smallestSoFar.get("Humidity"));
-                    if(currentHumidity < smallestHumidity){
+                if(currentHumidity < smallestHumidity){
                         smallestSoFar = currentRow;
-                    }
+                }
             }
-        return smallestSoFar; 
+            return smallestSoFar; 
         }
         return smallestSoFar;
     }
