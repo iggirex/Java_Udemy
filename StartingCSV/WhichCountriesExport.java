@@ -90,9 +90,9 @@ public class WhichCountriesExport {
         //System.out.println(countryInfo(parser, "Germany"));
         //System.out.println(countryInfo(parser, "Nauru"));
         
-        //listExportersTwoProducts(parser, "gold", "diamonds");
+        //listExportersTwoProducts(parser, "cotton", "flowers");
         
-        //System.out.println(numberOfExporters(parser, "sugar") + " countries export sugar");
+        //System.out.println(numberOfExporters(parser, "cocoa") + " countries export sugar");
         
         bigExporters(parser, "$999,999,999,999");
     }

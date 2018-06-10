@@ -120,7 +120,7 @@ public class CSVMax {
         String coldestFileName = fileWithColdestTemperature();
         System.out.println("File with the coldest temperature is: " + coldestFileName);
         
-        FileResource coldestFile = new FileResource("./nc_weather/2014/" + coldestFileName);
+        FileResource coldestFile = new FileResource("./nc_weather/2013/" + coldestFileName);
         CSVParser parser = coldestFile.getCSVParser();
         
         System.out.println("This was the coldest hour on that day: " + coldestHourInFile(parser).get("TemperatureF"));
