@@ -51,7 +51,47 @@ public class CaesarCipher {
         String encrypted = encrypt(message, key);
         System.out.println("key is " + key + "\n" + encrypted);
         
+    }
+    
+    public String encryptTwoKeys(String input, int key1, int key2){
         
+        StringBuilder encrypted = new StringBuilder(input);
+        
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String shiftedAlphabet1 = alphabet.substring(key1) + alphabet.substring(0, key1);
+        String shiftedAlphabet2 = alphabet.substring(key2) + alphabet.substring(0, key2);
+        
+        for(int i = 0; i < encrypted.length(); i++){
+            boolean upper = false;
+            char currChar = encrypted.charAt(i);
+            
+            if(Character.toUpperCase(currChar) == currChar){
+                upper = true;
+            }
+            int idx = alphabet.indexOf(Character.toUpperCase(encrypted.charAt(i)));
+            
+            if(idx != -1){
+                char newChar = ' ';
+                if(i % 2 == 0){
+                    newChar = shiftedAlphabet1.charAt(idx);
+                } else {
+                    newChar = shiftedAlphabet2.charAt(idx);
+                }
+                
+                if(upper){
+                    encrypted.setCharAt(i, newChar);
+                } else {
+                    encrypted.setCharAt(i, Character.toLowerCase(newChar));
+                }
+            }
+        }
+        return encrypted.toString();
+    }
+    
+    public void testEncryptTwoKeys(){
+     
+        System.out.println(encryptTwoKeys("First Legion", 23, 17));
+        //System.out.println(encryptTwoKeys(
     }
     
 
