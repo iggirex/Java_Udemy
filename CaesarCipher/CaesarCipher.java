@@ -45,11 +45,15 @@ public class CaesarCipher {
         
         //System.out.println(encrypt("I AM IGMA?STER 50 million!!!", 2));
         //System.out.println(encrypt("FREE CAKE IN THE CONFERECNCE ROOM", 17));
-        int key = 23;
-        FileResource fr = new FileResource();
-        String message = fr.asString();
-        String encrypted = encrypt(message, key);
-        System.out.println("key is " + key + "\n" + encrypted);
+        System.out.println(encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
+        
+        System.out.println(encrypt("Encryption is very important in today's world", 11));
+        
+        //int key = 23;
+        //FileResource fr = new FileResource();
+        //String message = fr.asString();
+        //String encrypted = encrypt(message, key);
+        //System.out.println("key is " + key + "\n" + encrypted);
         
     }
     
@@ -90,8 +94,21 @@ public class CaesarCipher {
     
     public void testEncryptTwoKeys(){
      
-        System.out.println(encryptTwoKeys("First Legion", 23, 17));
-        //System.out.println(encryptTwoKeys(
+        //System.out.println(encryptTwoKeys("First Legion", 23, 17));
+        System.out.println(encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
+    }
+    
+    public void decrypt(){
+        
+        for(int i = 0; i < 26; i++){
+            
+            String cs = encrypt("Pyncjaetzy td gpcj txazcelye ty ezolj'd hzcwo", i);
+            
+            System.out.println(i + " : " + cs);
+            
+            
+        }
+        
     }
     
 
