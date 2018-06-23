@@ -93,21 +93,62 @@ public class CaesarCipher {
     }
     
     public void testEncryptTwoKeys(){
-     
         //System.out.println(encryptTwoKeys("First Legion", 23, 17));
         System.out.println(encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
     }
     
     public void decrypt(){
-        
         for(int i = 0; i < 26; i++){
-            
             String cs = encrypt("Pyncjaetzy td gpcj txazcelye ty ezolj'd hzcwo", i);
-            
             System.out.println(i + " : " + cs);
-            
-            
         }
+    }
+    
+    public int maxIndex(String message){
+        //String exampleText = "Hi, do you want a lollipop today? I own many good flavors,but banana is outstanding";
+        //String exampleText = "aaabbbcdefgzzzzz";
+        String alph = "abcdefghijklmnopqrstuvwxyz";
+        int[] count = new int[26];
+        
+
+        
+        for(int k=0; k < message.length(); k++){
+            char ch = Character.toLowerCase(message.charAt(k));
+            int index = alph.indexOf(ch);
+            if(index != -1){
+                count[index]++;
+            }
+        }
+        
+        int maxCount = 0;
+        int maxIndex = 0;
+        
+        for(int k=0; k < count.length; k++){
+            System.out.println(k + ":\t" + count[k]);
+            if(count[k] > maxCount){
+                maxCount = count[k];
+                maxIndex = k;
+            }
+        }
+        return maxIndex;
+    }
+    //countLetters(String encrypted){
+    //}
+    public void statisticalDecrypt(){
+        
+        //System.out.println(maxIndex());
+        System.out.println(encrypt("Hey there", 10));
+        String encrypted = "Roi drobo";
+        int maxIndex = maxIndex(encrypted);
+        int encryptKey = maxIndex - 4;
+        int decryptKey = 26 - encryptKey;
+        
+        if(maxIndex < 4){
+            decryptKey = 26 - (4 - maxIndex);
+        }
+        int x = 16;
+        System.out.println("we want to encrypt with " + x + " which gives us: " + encrypt(encrypted, decryptKey));
+        //System.out.println(encrypt(encrypted, 26 - maxIndex));
         
     }
     
