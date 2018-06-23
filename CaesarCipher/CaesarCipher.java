@@ -151,6 +151,5 @@ public class CaesarCipher {
         //System.out.println(encrypt(encrypted, 26 - maxIndex));
         
     }
-    
 
 }
