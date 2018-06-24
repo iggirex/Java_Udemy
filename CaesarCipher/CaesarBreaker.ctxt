@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=CaesarBreaker
+comment1.params=input\ key
+comment1.target=java.lang.String\ encrypt(java.lang.String,\ int)
+comment2.params=input\ key1\ key2
+comment2.target=java.lang.String\ encryptTwoKeys(java.lang.String,\ int,\ int)
+comment3.params=message
+comment3.target=int\ maxIndex(java.lang.String)
+comment4.params=encrypted
+comment4.target=java.lang.String\ statisticalDecrypt(java.lang.String)
+comment5.params=message\ start
+comment5.target=java.lang.String\ halfOfString(java.lang.String,\ int)
+comment6.params=message
+comment6.target=void\ decryptTwoKeys(java.lang.String)
+comment7.params=
+comment7.target=void\ testDecryptTwoKeys()
+numComments=8
