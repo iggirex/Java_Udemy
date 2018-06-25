@@ -12,7 +12,6 @@ import java.io.*;
 public class WordLengths {
 
     public void countWordLengths(FileResource resource, int counts){
-        
         int[] countArr = new int[counts];
         
         for(String word : resource.words()){
@@ -33,7 +32,6 @@ public class WordLengths {
                 }
             }
             countArr[wordLength] += 1;
-            System.out.println(word);
         }
         
         for(int i=0; i < countArr.length; i++){
@@ -43,9 +41,7 @@ public class WordLengths {
     
     public void testCountWordsLengths(){
         FileResource fr = new FileResource();
-        
         countWordLengths(fr, 31);
-        
     }
     
 }

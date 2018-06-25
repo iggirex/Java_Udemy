@@ -94,18 +94,11 @@ public class CaesarCipher {
     
     public void testEncryptTwoKeys(){
         //System.out.println(encryptTwoKeys("First Legion", 23, 17));
-        System.out.println(encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
+        //System.out.println(encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
+    
+        System.out.println(">>>>>: " + encryptTwoKeys("Top ncmy qkff vi vguv vbg ycpx", 24, 6));
+    
     }
-    
-    //public void decrypt(){
-    //    for(int i = 0; i < 26; i++){
-    //        String cs = encrypt("Pyncjaetzy td gpcj txazcelye ty ezolj'd hzcwo", i);
-    //        System.out.println(i + " : " + cs);
-    //    }
-    //}
-    
-    //countLetters(String encrypted){
-    //}
     
     public int maxIndex(String message){
         //String exampleText = "Hi, do you want a lollipop today? I own many good flavors,but banana is outstanding";

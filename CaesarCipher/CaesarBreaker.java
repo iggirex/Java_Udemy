@@ -86,6 +86,9 @@ public class CaesarBreaker {
         int maxCount = 0;
         int maxIndex = 0;
         for(int k=0; k < count.length; k++){
+            
+            //System.out.println("countArr of : " + k + " = " + count[k]);
+            
             if(count[k] > maxCount){
                 maxCount = count[k];
                 maxIndex = k;
@@ -93,18 +96,87 @@ public class CaesarBreaker {
         }
         return maxIndex;
     }
+    
+    public int newMaxIndex(int[] counts){
+        int maxCount = 0;
+        int maxIndex = 0;
+        for(int k=0; k < counts.length; k++){
+            if(counts[k] > maxCount){
+                maxCount = counts[k];
+                maxIndex = k;
+            }
+        }
+        return maxIndex;
+    }
+    
+    public int[] countLetters(String s){
+        String alph = "abcdefghijklmnopqrstuvwxyz";
+        int[] counts = new int[26];
+        
+        for(int i=0; i < s.length(); i++){
+            char ch = Character.toLowerCase(s.charAt(i));
+            int index = alph.indexOf(ch);
+            
+            if(index != -1){
+                counts[index]++;
+            }
+        }
+        return counts;
+    }
+    
+    public int getKey(String s){
+        int[] counts = countLetters(s);
+        int maxIdx = newMaxIndex(counts);
+        int encryptionKey = maxIdx - 4;
+        
+        if( maxIdx < 4){
+            
+            encryptionKey = 26 - (4 - maxIdx);
+        }
+        
+        System.out.println("$$$ inside getKey and encryption is : " + encryptionKey);
+        return encryptionKey;
+    }
+    
+    public String decrypt(String encrypted){
+        
+        int encryptionKey = getKey(encrypted);
+        
+        int decryptionKey = 26 - encryptionKey;
+        
+        //if(encryptionKey < 4){
+        //    decryptionKey = 26 - (4 - encryptionKey);
+        //    System.out.println("######## EncryptionKey < 4 === Encryption key was: " + encryptionKey + "\tand decryption dey then is: " + decryptionKey);
+        //}
+        System.out.println("This is decryptionKey: " + decryptionKey);
+        //System.out.println("And decripted message: \t" + encrypt(encrypted, decryptionKey));
+        
+        String decrypted = encrypt(encrypted, decryptionKey);
+        return decrypted;
+        
+    }
+    
+    public void testDecrypt(){
+     
+        String encrypted1 = encrypt("Bees better then eves eets",10);
+        String encrypted2 = encrypt("Bees better then eves eets",1);
+        String encrypted3 = encrypt("Bent enter send went lent peet",1);
+        //String encrypted1 = encrypt("Bees better then eves eets",10);
+        //String encrypted1 = encrypt("Bees better then eves eets",10);
+        
+        decrypt(encrypted2);
+    }
 
     public String statisticalDecrypt(String encrypted){
         int maxIndex = maxIndex(encrypted);
+        System.out.println("this is maxIndex: " + maxIndex + "\tof encrypted message: " + encrypted);
         int encryptKey = maxIndex - 4;
         int decryptKey = 26 - encryptKey;
         
         if(maxIndex < 4){
             decryptKey = 26 - (4 - maxIndex);
         }
-        int x = 16;
-        //System.out.println("we want to encrypt with " + x + " which gives us: " + encrypt(encrypted, decryptKey));
-        //System.out.println(encrypt(encrypted, 26 - maxIndex));
+        System.out.println("Final decryption key is: " + decryptKey);
         return encrypt(encrypted, decryptKey);
     }
     
@@ -116,15 +188,22 @@ public class CaesarBreaker {
         return returnString.toString();
     }
     
-    
-    
     public void decryptTwoKeys(String message){
+        
+        System.out.println("Incoming encrypted message: " + message);
+        
         String key1String = halfOfString(message, 0);
         String key2String = halfOfString(message, 1);
         
-        String key1Decrypted = statisticalDecrypt(key1String);
-        String key2Decrypted = statisticalDecrypt(key2String);
-        System.out.println("key1String: " + key1String + "\tand key2String: " + key2String);
+        System.out.println("key1String: " + key1String + "\tkey2String: " + key2String);
+        
+        //String key1Decrypted = statisticalDecrypt(key1String);
+        //String key2Decrypted = statisticalDecrypt(key2String);
+        
+        
+        
+        String key1Decrypted = decrypt(key1String);
+        String key2Decrypted = decrypt(key2String);
         
         StringBuilder decryptedMessage = new StringBuilder();
         
@@ -150,10 +229,38 @@ public class CaesarBreaker {
         
         String encrypted2 = encryptTwoKeys("hey there cheese eater Peter Deedes", 14, 8);
         
-        decryptTwoKeys(encrypted2);
+        String encrypted3 = encryptTwoKeys("hey there cheese eater Peter Deedes", 2, 8);
+        
+        
+        //decryptTwoKeys(encrypted3);
+        //decryptTwoKeys("Top ncmy qkff vi vguv vbg ycpx");
+        //decryptTwoKeys("Akag tjw Xibhr awoa aoee xakex znxag xwko");
+        
+        
+        FileResource fr = new FileResource();
+        decryptTwoKeys(fr.asString());
+        
         
         System.out.println("===============================");
         System.out.println("===============================");
         
+    }
+    
+    public void testGetKey(){
+        
+        String encrypted1 = encrypt("eeeeeeee", 10);
+        String encrypted2 = encrypt("eve eve eve eve eve", 16);
+        String encrypted3 = encrypt("eve eve eve eve eve", 2);
+        
+        getKey(encrypted3);
+    }
+    
+    public void testCountLetters(){
+        String alph = "abcdefghijklmnopqrstuvwxyz";
+        int[] letterCounts = countLetters("aabbccddfghizzzzzz");
+        for(int i=0; i < letterCounts.length; i++){
+            System.out.println(alph.charAt(i) + ": " + letterCounts[i]);
+            
+        }
     }
 }
