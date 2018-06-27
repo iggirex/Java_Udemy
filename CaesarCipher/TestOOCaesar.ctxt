@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=TestOOCaesar
+comment0.text=\r\n\ Write\ a\ description\ of\ TestOOCaesar\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ countLetters()
+comment2.params=input
+comment2.target=int\ maxIndex(java.lang.String)
+comment3.params=
+comment3.target=void\ breakCaesarCipher()
+comment4.params=encrypted
+comment4.target=java.lang.String\ breakCaesarCipher(java.lang.String)
+comment5.params=input
+comment5.target=void\ simpleTest(java.lang.String)
+comment6.params=
+comment6.target=void\ testMaxIndex()
+numComments=7
