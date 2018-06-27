@@ -21,11 +21,15 @@ public class OOCaesarCipher {
         String result = "";
         
         for(int i=0; i < input.length(); i++){
-            char inputCh = input.charAt(i);
-            int alphabetIdx = alphabet.indexOf(inputCh);
-            char shiftedChar = shiftedAlphabet.charAt(alphabetIdx);
+            char inputCh = Character.toLowerCase(input.charAt(i));
             
-            result = result + shiftedChar;
+            if(alphabet.indexOf(inputCh) != -1){
+                int alphabetIdx = alphabet.indexOf(inputCh);
+                char shiftedChar = shiftedAlphabet.charAt(alphabetIdx);
+                result = result + shiftedChar;
+            } else {
+                result = result + inputCh;
+            }
         }
         return result;
     }
