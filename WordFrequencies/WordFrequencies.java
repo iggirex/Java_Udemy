@@ -8,7 +8,6 @@
 import java.util.ArrayList;
 import edu.duke.FileResource;
 public class WordFrequencies {
-    
     private ArrayList<String> myWords;
     private ArrayList<Integer> myFreqs;
     
@@ -26,7 +25,6 @@ public class WordFrequencies {
             s = s.toLowerCase();
             int idx = myWords.indexOf(s);
             if (idx == -1){
-                System.out.println("Thjis is myWords size: " + myWords.size() + " and index: " + idx);
                 myWords.add(s);
                 myFreqs.add(1);
             } else {
@@ -36,18 +34,25 @@ public class WordFrequencies {
     }
     
     public int findIndexOfMax(){
-        // returns index location of largest value in myFreqs
-        // if tie, return first value
-        return 0;
+        int largest = 0;
+        int largestIdx = 0;
+        
+        for(int i=0; i < myWords.size(); i++){
+            if(myFreqs.get(i) > largest){
+                largest = myFreqs.get(i);
+                largestIdx = i;
+            }
+        }
+        return largestIdx;
     }
     
     public void tester(){
         findUnique();
+        int max = findIndexOfMax();
+        System.out.println("Amount of unique words: " + myWords.size());
         for(int i=0; i < myWords.size(); i++){
-            System.out.println("The word -" + myWords.get(i) + "- occurs " + myFreqs.get(i) + " many times");
+            System.out.println(myFreqs.get(i) + " " + myWords.get(i));
         }
-        
-        //
-        //findIndexOfMax();
+        System.out.println("The word that occurs most often and its count are: " + myWords.get(max) + " " + myFreqs.get(max));
     }
 }
