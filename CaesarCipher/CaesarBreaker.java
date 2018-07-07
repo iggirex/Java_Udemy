@@ -139,21 +139,12 @@ public class CaesarBreaker {
     }
     
     public String decrypt(String encrypted){
-        
         int encryptionKey = getKey(encrypted);
-        
         int decryptionKey = 26 - encryptionKey;
         
-        //if(encryptionKey < 4){
-        //    decryptionKey = 26 - (4 - encryptionKey);
-        //    System.out.println("######## EncryptionKey < 4 === Encryption key was: " + encryptionKey + "\tand decryption dey then is: " + decryptionKey);
-        //}
         System.out.println("This is decryptionKey: " + decryptionKey);
-        //System.out.println("And decripted message: \t" + encrypt(encrypted, decryptionKey));
-        
         String decrypted = encrypt(encrypted, decryptionKey);
         return decrypted;
-        
     }
     
     public void testDecrypt(){
@@ -189,27 +180,16 @@ public class CaesarBreaker {
     }
     
     public void decryptTwoKeys(String message){
-        
-        System.out.println("Incoming encrypted message: " + message);
-        
         String key1String = halfOfString(message, 0);
         String key2String = halfOfString(message, 1);
-        
         System.out.println("key1String: " + key1String + "\tkey2String: " + key2String);
-        
-        //String key1Decrypted = statisticalDecrypt(key1String);
-        //String key2Decrypted = statisticalDecrypt(key2String);
-        
-        
         
         String key1Decrypted = decrypt(key1String);
         String key2Decrypted = decrypt(key2String);
-        
         StringBuilder decryptedMessage = new StringBuilder();
         
         int string1Counter = 0;
         int string2Counter = 0;
-        
         for(int i=0; i < message.length(); i++){
             if(i % 2 == 0){
                 decryptedMessage.append(key1Decrypted.charAt(string1Counter));
@@ -219,35 +199,27 @@ public class CaesarBreaker {
                 string2Counter++;
             }
         }
-        
         //System.out.println("key1Decrypted: " + key1Decrypted + "\tand key2Decrypted: " + key2Decrypted);
         System.out.println("Decrypted message >>>> " + decryptedMessage.toString());
     }
     
     public void testDecryptTwoKeys(){
         String encrypted1 = encryptTwoKeys("hey there duderonemous", 14, 8);
-        
         String encrypted2 = encryptTwoKeys("hey there cheese eater Peter Deedes", 14, 8);
-        
         String encrypted3 = encryptTwoKeys("hey there cheese eater Peter Deedes", 2, 8);
-        
         
         //decryptTwoKeys(encrypted3);
         //decryptTwoKeys("Top ncmy qkff vi vguv vbg ycpx");
         //decryptTwoKeys("Akag tjw Xibhr awoa aoee xakex znxag xwko");
         
+        //decryptTwoKeys("Aal uttx hm aal Qtct Fhljha pl Wbdl. Pvxvxlx!");
         
         FileResource fr = new FileResource();
         decryptTwoKeys(fr.asString());
-        
-        
         System.out.println("===============================");
-        System.out.println("===============================");
-        
     }
     
     public void testGetKey(){
-        
         String encrypted1 = encrypt("eeeeeeee", 10);
         String encrypted2 = encrypt("eve eve eve eve eve", 16);
         String encrypted3 = encrypt("eve eve eve eve eve", 2);

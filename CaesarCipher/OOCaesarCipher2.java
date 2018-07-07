@@ -46,7 +46,7 @@ public class OOCaesarCipher2 {
         return result;
     }
     
-    public String encryptTwo(String input){
+    public void decryptTwo(String input, int dKey1, int dKey2){
         StringBuilder result = new StringBuilder();
         String letters1 = getLetters(input, 0);
         String letters2 = getLetters(input, 1);
@@ -54,8 +54,30 @@ public class OOCaesarCipher2 {
         String encrypted1 = encrypt(letters1, shiftedAlphabet1);
         String encrypted2 = encrypt(letters2, shiftedAlphabet2);
         
-        System.out.println("this is ecrypted1: " + encrypted1);
-        System.out.println("this is ecrypted2: " + encrypted2);
+        int count1 = 0;
+        int count2 = 0;
+        for(int i=0; i < input.length(); i++){
+            
+            if(i % 2 == 0){
+                result.append(encrypted1.charAt(count1));
+                count1++;
+            } else {
+                result.append(encrypted2.charAt(count2));
+                count2++;
+            }
+        }
+        //return result.toString();
+        
+    }
+    
+    
+    public String encryptTwo(String input){
+        StringBuilder result = new StringBuilder();
+        String letters1 = getLetters(input, 0);
+        String letters2 = getLetters(input, 1);
+        
+        String encrypted1 = encrypt(letters1, shiftedAlphabet1);
+        String encrypted2 = encrypt(letters2, shiftedAlphabet2);
         
         int count1 = 0;
         int count2 = 0;
@@ -70,6 +92,18 @@ public class OOCaesarCipher2 {
             }
         }
         return result.toString();
+    }
+    
+    public void weekTest(){
+        //String message = "Can you imagine life WITHOUT the internet AND computers in your pocket?";
+        String message = "aaaaaaaaaaaaaaa";
+        
+        OOCaesarCipher2 cc2 = new OOCaesarCipher2(20, 8);
+        //OOCaesarCipher2 cc2 = new OOCaesarCipher2(21, 8);
+        
+        System.out.println(cc2.encrypt(message,shiftedAlphabet1));
+        
+        System.out.println(cc2.encryptTwo(message));
     }
     
     public int maxIndex(String input){
@@ -107,6 +141,9 @@ public class OOCaesarCipher2 {
         int maxIndex1 = maxIndex(letters1);
         int maxIndex2 = maxIndex(letters2);
         
+        System.out.println("letters2: " + letters1 + " and letters2: " + letters2);
+        System.out.println("maxIndex1: " + maxIndex1 + " and maxIndex2: " + maxIndex2);
+        
         int ecryptionKey1 = maxIndex1 - 4;
         int ecryptionKey2 = maxIndex2 -4;
         
@@ -128,10 +165,13 @@ public class OOCaesarCipher2 {
         String decrypted1 = encrypt(letters1, shiftedAlphabet3);
         String decrypted2 = encrypt(letters2, shiftedAlphabet4);
         for(int i=0; i < letters1.length(); i++){
-         
             decrypted = decrypted + decrypted1.charAt(i);
-            decrypted = decrypted + decrypted2.charAt(i);
             
+            System.out.println("this is decrypted2.length()" + decrypted2.length() + " and i: " + i);
+
+            if(decrypted2.length() > i){
+                decrypted = decrypted + decrypted2.charAt(i);
+            }
         }
         System.out.println(">>>> decrypted String: " + decrypted);
     }
@@ -163,8 +203,9 @@ public class OOCaesarCipher2 {
         OOCaesarCipher2 cc2 = new OOCaesarCipher2(10, 16);
         String message = "heeeeey duder, ye eateing dem cheese bees?";
         
-        String encrypted = cc2.encryptTwo(message);
-        System.out.println("This is message: " + message);
+        //String encrypted = cc2.encryptTwo(message);
+        String encrypted = "Aal uttx hm aal Qtct Fhljha pl Wbdl. Pvxvxlx!";
+        
         System.out.println("This is doubly encrypted message: " + encrypted);
         
         cc2.breakCaesarCipher(encrypted);
