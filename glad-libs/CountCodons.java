@@ -50,21 +50,20 @@ public class CountCodons {
     }
     
     public void printCodonCounts(){
+        int counter = 0;
         for(String key: hmap.keySet()){
             System.out.println(key + " : " + hmap.get(key));
+            counter++;
         }
         System.out.println("Most common codon: " + getMostCommonCodon());
+        System.out.println("Number of unique codons: " + counter);
     }
     
     public void testPrintCodonCounts(){
         FileResource fr = new FileResource();
         
-        buildCodonMap(2, fr.asString());
+        buildCodonMap(0, fr.asString());
         printCodonCounts();
-
-        // in the reading frame, prints the most common codon and its count, and prints the codons and 
-        // their number of occurrences for those codons whose number of occurrences in this reading 
-        // frame are between two numbers inclusive
     }
 
 }

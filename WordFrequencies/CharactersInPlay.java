@@ -59,7 +59,7 @@ public class CharactersInPlay {
         //for(int i=0; i < names.size(); i++){
         //    System.out.println(names.get(i) + " >> " + counts.get(i));
         //}
-        charactersWithNumParts(10, 15);
+        charactersWithNumParts(9, 16);
         // estimate what a "main character" is - how many speaking parts to be "main"
         
         // test of macbethSmall, macBeth

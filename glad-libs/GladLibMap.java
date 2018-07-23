@@ -2,17 +2,8 @@ import edu.duke.*;
 import java.util.*;
 
 public class GladLibMap {
-    private ArrayList<String> adjectiveList;
-    private ArrayList<String> nounList;
-    private ArrayList<String> colorList;
-    private ArrayList<String> countryList;
-    private ArrayList<String> nameList;
-    private ArrayList<String> animalList;
-    private ArrayList<String> timeList;
-    private ArrayList<String> verbList;
-    private ArrayList<String> fruitList;
     private ArrayList<String> usedWords;
-    
+    private HashMap<String, ArrayList<String>> replacers;
     private Random myRandom;
     private int replacedWords;
     
@@ -20,25 +11,27 @@ public class GladLibMap {
     private static String dataSourceDirectory = "data";
     
     public GladLibMap(){
+        replacers = new HashMap<String, ArrayList<String>>();
         initializeFromSource(dataSourceDirectory);
         myRandom = new Random();
     }
     
     public GladLibMap(String source){
+        replacers = new HashMap<String, ArrayList<String>>();
         initializeFromSource(source);
         myRandom = new Random();
     }
     
     private void initializeFromSource(String source) {
-        adjectiveList= readIt(source+"/adjective.txt"); 
-        nounList = readIt(source+"/noun.txt");
-        colorList = readIt(source+"/color.txt");
-        countryList = readIt(source+"/country.txt");
-        nameList = readIt(source+"/name.txt");      
-        animalList = readIt(source+"/animal.txt");
-        timeList = readIt(source+"/timeframe.txt");
-        verbList = readIt(source+"/verb.txt");
-        fruitList = readIt(source+"/fruit.txt");
+        replacers.clear();
+        String[] sources = {"adjective", "noun", "color", "country", "name",
+                        "animal", "timeframe", "verb", "fruit"};
+        
+        for(int i=0; i < sources.length; i++){
+            String category = sources[i];
+            ArrayList<String> wordList = readIt(source + "/" + category + ".txt");
+            replacers.put(category, wordList);
+        }
         usedWords = new ArrayList<String>();
     }
     
@@ -48,37 +41,13 @@ public class GladLibMap {
     }
     
     private String getSubstitute(String label) {
-        if (label.equals("country")) {
-            return randomFrom(countryList);
-        }
-        if (label.equals("color")){
-            return randomFrom(colorList);
-        }
-        if (label.equals("noun")){
-            return randomFrom(nounList);
-        }
-        if (label.equals("name")){
-            return randomFrom(nameList);
-        }
-        if (label.equals("adjective")){
-            return randomFrom(adjectiveList);
-        }
-        if (label.equals("animal")){
-            return randomFrom(animalList);
-        }
-        if (label.equals("timeframe")){
-            return randomFrom(timeList);
-        }
+        ArrayList<String> replacerList = replacers.get(label);
+        
         if (label.equals("number")){
             return ""+myRandom.nextInt(50)+5;
         }
-        if (label.equals("verb")){
-            return randomFrom(verbList);
-        }
-        if (label.equals("fruit")){
-            return randomFrom(fruitList);
-        }
-        return "**UNKNOWN**";
+        return randomFrom(replacers.get(label));
+        //return "**UNKNOWN**";
     }
     
     private Boolean hasItBeenUsed(String w){
@@ -152,12 +121,21 @@ public class GladLibMap {
         return list;
     }
     
+    public int totalWordsInMap(){
+        int counter = 0;
+        for(String category : replacers.keySet()){
+            counter += replacers.get(category).size();
+        }
+        return counter;
+    }
+    
     public void makeStory(){
         usedWords.clear();
         replacedWords = 0;
         System.out.println("\n");
-        String story = fromTemplate("data/madtemplate2.txt");
+        String story = fromTemplate("data/madtemplate3.txt");
         printOut(story, 60);
         System.out.println("\n" + replacedWords);
+        System.out.println("\nTotal words stored in HashMap: " + totalWordsInMap());
     }
 }
