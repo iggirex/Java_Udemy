@@ -19,5 +19,23 @@ public class Tester
     
     public void testLogAnalyzer() {
         // complete method
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("short-test_log");
+        la.printAll();
+    }
+    
+    public void testUniqueIP(){
+        String file = "short-test_log";
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(file);
+        System.out.println("File: " + file + " has this many unique IP addresses: " + la.countUniqueIPs());
+        
+    }
+    
+    public void testPrintAllHigherThanNum(){
+        String file = "short-test_log";
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(file);
+        la.printAllHigherThanNum(200);
     }
 }
