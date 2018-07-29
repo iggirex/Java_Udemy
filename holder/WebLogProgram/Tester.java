@@ -38,4 +38,23 @@ public class Tester
         la.readFile(file);
         la.printAllHigherThanNum(200);
     }
+    
+    public void testUniqueIPVisitsOnDay(){
+        String file = "short-test_log2";
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(file);
+        ArrayList<String> result = la.uniqueIPVisitsOnDay("Sep 14"); 
+        
+        for(int i=0; i < result.size(); i++){
+            System.out.println(result.get(i));
+        }
+    }
+    
+    public void testCountUniqueIPsInRange(){
+        String file = "short-test_log2";
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(file);
+        System.out.println(la.countUniqueIPsInRange(300, 399));
+        
+    }
 }
