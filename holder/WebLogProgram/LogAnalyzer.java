@@ -76,10 +76,11 @@ public class LogAnalyzer
                 String ip = le.getIpAddress();
 
                 if(le.getAccessTime().toString().contains(someday)){
-                    System.out.println("IN LOOP access time is: " + le.getAccessTime());
+                    //System.out.println("IN LOOP access time is: " + le.getAccessTime());
                     ipsOnDay.add(le);
                     
-                    if(uniquesOnDay.contains(ip)){
+                    if(!uniquesOnDay.contains(ip)){
+                        //System.out.println("inside if");
                         uniquesOnDay.add(ip);
                     }
                 }

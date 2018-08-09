@@ -36,15 +36,15 @@ public class Tester
         String file = "short-test_log";
         LogAnalyzer la = new LogAnalyzer();
         la.readFile(file);
-        la.printAllHigherThanNum(200);
+        la.printAllHigherThanNum(400);
     }
     
     public void testUniqueIPVisitsOnDay(){
         String file = "short-test_log2";
         LogAnalyzer la = new LogAnalyzer();
         la.readFile(file);
-        ArrayList<String> result = la.uniqueIPVisitsOnDay("Sep 14"); 
-        
+        ArrayList<String> result = la.uniqueIPVisitsOnDay("Mar 17"); 
+        System.out.println("Array is of size: " + result.size());
         for(int i=0; i < result.size(); i++){
             System.out.println(result.get(i));
         }
@@ -54,7 +54,7 @@ public class Tester
         String file = "short-test_log2";
         LogAnalyzer la = new LogAnalyzer();
         la.readFile(file);
-        System.out.println(la.countUniqueIPsInRange(300, 399));
+        System.out.println(la.countUniqueIPsInRange(200, 299));
         
     }
 }
