@@ -1,3 +1,5 @@
+package WebLogProgram;
+
 
 /**
  * Write a description of class LogRecord here.

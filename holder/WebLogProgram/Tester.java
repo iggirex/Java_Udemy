@@ -43,7 +43,7 @@ public class Tester
         String file = "short-test_log2";
         LogAnalyzer la = new LogAnalyzer();
         la.readFile(file);
-        ArrayList<String> result = la.uniqueIPVisitsOnDay("Mar 17"); 
+        ArrayList<String> result = la.uniqueIPVisitsOnDay("Sep 27"); 
         System.out.println("Array is of size: " + result.size());
         for(int i=0; i < result.size(); i++){
             System.out.println(result.get(i));
@@ -54,7 +54,61 @@ public class Tester
         String file = "short-test_log2";
         LogAnalyzer la = new LogAnalyzer();
         la.readFile(file);
-        System.out.println(la.countUniqueIPsInRange(200, 299));
+        System.out.println(la.countUniqueIPsInRange(400, 499));
         
     }
+    
+    public void testCountVisitsPerIP(){
+        String file = "short-test_log2";
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(file);
+        System.out.println(la.countVisitsPerIP());
+        //System.out.println("$$$$$ " + la.mostNumberVisitsByIP(la.countVisitsPerIP()));
+        System.out.println("$$$$$ " + la.iPsMostVisits(la.countVisitsPerIP()));
+    }
+    
+    public void testMostNumberVisitsByIP(){
+        String file = "short-test_log2";
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(file);
+        HashMap<String, Integer> counts = la.countVisitsPerIP();
+        //System.out.println(la.mostNumberVisitsByIP(counts));
+        System.out.println("$$$$: " + la.mostNumberVisitsByIP(la.countVisitsPerIP()));
+    }
+    
+    public void testiPsMostVisits(){
+        String file = "weblog3-short_log";
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(file);
+        HashMap<String, Integer> counts = la.countVisitsPerIP();
+        //System.out.println(la.iPsMostVisits(counts));
+        System.out.println("$$$: " + la.iPsMostVisits(la.countVisitsPerIP()));
+    }
+    
+    public void testIPsForDays(){
+        String file = "weblog3-short_log";
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(file);
+        HashMap<String, ArrayList<String>> dates = la.iPsForDays();
+        System.out.println(dates);
+        System.out.println("$$$$$ " + la.dayWithMostIPVisits(la.iPsForDays()));
+    }
+    
+    public void testDayWithMostIPVisits(){
+        String file = "weblog3-short_log";
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(file);
+        HashMap<String, ArrayList<String>> dates = la.iPsForDays();
+        //System.out.println(la.dayWithMostIPVisits(dates));
+        System.out.println("$$$: " + la.dayWithMostIPVisits(la.iPsForDays()));
+    }
+    
+    public void testIPsWithMostVisitsOnDay(){
+        String file = "weblog3-short_log";
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile(file);
+        HashMap<String, ArrayList<String>> dates = la.iPsForDays();
+        System.out.println(la.iPsWithMostVisitsOnDay(dates, "Sept 29"));
+    }
+    
 }
